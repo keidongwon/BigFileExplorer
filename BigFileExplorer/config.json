@@ -1,0 +1,11 @@
+﻿{
+    "extensions" : ["*.avi", "*.mkv", "*.mp4", "*.mpg", "*.wmv"],
+    "roots" : 
+    [
+        ["Video", "\\\\NAS\\video"]
+    ],
+    "roots_width" : 500,
+    "roots_font_size" : 30,
+    "files_column" : 600,
+    "files_font_size" : 30
+}
