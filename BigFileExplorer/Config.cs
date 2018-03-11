@@ -36,6 +36,7 @@ namespace BigFileExplorer
             }
             catch(FileNotFoundException e)
             {
+                Debug.WriteLine(e.ToString());
                 Generate();
                 MessageBox.Show("config.json 을 생성했습니다. 폴더를 추가해주세요");
             }

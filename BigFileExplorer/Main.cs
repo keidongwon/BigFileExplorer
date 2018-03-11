@@ -119,7 +119,7 @@ namespace BigFileExplorer
             dirCurrent = path;
             Dictionary<string, string> dirs = new Dictionary<string, string>();
             Dictionary<string, string> files = new Dictionary<string, string>();
-            fc.GetFiles(path, ref dirs, ref files);
+            if (fc.GetFiles(path, ref dirs, ref files) == false) return;
 
             listViewFiles.Items.Clear();
             
@@ -161,11 +161,12 @@ namespace BigFileExplorer
 
         private void listViewFiles_DoubleClick(object sender, EventArgs e)
         {
-            int index = listViewFiles.FocusedItem.Index;
-            string path = listViewFiles.Items[index].SubItems[1].Text;
-
             try
             {
+                int index = listViewFiles.FocusedItem.Index;
+                string path = listViewFiles.Items[index].SubItems[1].Text;
+                if (path == "") return;
+
                 if (path == "..")
                 {
                     int pos = dirCurrent.LastIndexOf("\\");
@@ -188,7 +189,6 @@ namespace BigFileExplorer
             }
             catch(Exception)
             {
-                MessageBox.Show("Can not execute!");
             }
         }
 

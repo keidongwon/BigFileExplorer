@@ -19,8 +19,10 @@ namespace BigFileExplorer
             config.GetExtensions(ref extensions);
         }
 
-        public void GetFiles(String folder, ref Dictionary<string, string> dirs, ref Dictionary<string, string> files)
+        public bool GetFiles(String folder, ref Dictionary<string, string> dirs, ref Dictionary<string, string> files)
         {
+            if (folder == "") return false;
+
             string[] strDirs = Directory.GetDirectories(folder);
             foreach (string s in strDirs)
             {
@@ -32,9 +34,10 @@ namespace BigFileExplorer
             Dictionary<string, string> tmpFiles = new Dictionary<string,string>();
             foreach (string ext in extensions)
             {
-                string[] strFiles = Directory.GetFiles(folder, ext);
-                foreach (string s in strFiles)
+                var lstFiles = Directory.GetFiles(folder, ext).Select(f => new FileInfo(f)).OrderBy(f => f.FullName);
+                foreach (var item in lstFiles)
                 {
+                    string s = item.FullName;
                     Debug.WriteLine(s);
                     int pos1 = s.LastIndexOf("\\");
                     int pos2 = s.LastIndexOf(".");
@@ -50,6 +53,7 @@ namespace BigFileExplorer
             {
                 files.Add(key, tmpFiles[key]);
             }
+            return true;
         }
     }
 }
