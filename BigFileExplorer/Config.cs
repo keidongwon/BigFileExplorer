@@ -54,12 +54,13 @@ namespace BigFileExplorer
             using (StreamWriter sw = File.CreateText(filename))
             {
                 sw.WriteLine("{");
-                sw.WriteLine("    \"extensions\" : [\"*.avi\", \"*.mkv\", \"*.mp4\", \"*.mpg\", \"*.wmv\"],");
+                sw.WriteLine("    \"extensions\" : [\".avi\", \".mkv\", \".mp4\", \".mpg\", \".wmv\"],");
                 sw.WriteLine("    \"roots\" : ");
                 sw.WriteLine("    [");
                 sw.WriteLine("        [\"title\", \"c:/video/child\"]");
                 sw.WriteLine("    ],");
                 sw.WriteLine("    \"font_face\" : \"Tahoma\",");
+                sw.WriteLine("    \"view_detail\" : 1,");
                 sw.WriteLine("    \"roots_width\" : 500,");
                 sw.WriteLine("    \"roots_font_size\" : 30,");
                 sw.WriteLine("    \"files_column\" : 600,");
@@ -68,7 +69,7 @@ namespace BigFileExplorer
             }
         }
 
-        public void GetExtensions(ref ArrayList ext)
+        public void GetExtensions(ref List<string> ext)
         {
             if (!loaded) return;
 
